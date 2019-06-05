@@ -3,9 +3,14 @@ $errMsg = "";
 try {
 	require_once("connectBooks.php");
 
-   $sql = "select * from member where memId='{$_POST["memId"]}' and memPsw='{$_POST["memPsw"]}'";
-   $members = $pdo->query( $sql );
-
+  $sql = "
+    SELECT * 
+    FROM member 
+    WHERE memId= :memId AND memPsw= :memPsw";
+  $members = $pdo->prepare($sql);
+  $members->bindValue(":memId", $_REQUEST["memId"]);
+  $members->bindValue(":memPsw", $_REQUEST["memPsw"]);
+  $members->execute();
 } catch (PDOException $e) {
        $errMsg .=  $e->getMessage(). "<br>"; 
        $errMsg .=  $e->getLine(). "<br>";    	
@@ -28,6 +33,7 @@ h2 {
 if( $errMsg != ""){
 	exit( $errMsg);
 }
+
 if($members->rowCount() == 0 ){
   echo '<center>帳密錯誤, <a href="login.html">請重新登入</a></center>';
 }else{
