@@ -32,6 +32,8 @@ a:hover{
 </style>
 </head>
 <body>
+<div style="background-color:#bfbfef;text-align:right"><a href="cartShow.php">檢視購物車</a></div><br>
+
 <table align="center">
 	<tr bgcolor="#bfbfef"><th>書號</th><th>書名</th><th>價格</th><th>作者</th><th>購物</th></tr>
 <?php	
