@@ -1,16 +1,33 @@
-<?php 
+<?php
+session_start();
 $errMsg = "";
 try {
 	require_once("connectBooks.php");
 
-  $sql = "
-    SELECT * 
-    FROM member 
-    WHERE memId= :memId AND memPsw= :memPsw";
-  $members = $pdo->prepare($sql);
-  $members->bindValue(":memId", $_REQUEST["memId"]);
-  $members->bindValue(":memPsw", $_REQUEST["memPsw"]);
-  $members->execute();
+   $sql = "select * from member where memId=:memId and memPsw=:memPsw";
+   $members = $pdo->prepare( $sql );
+   $members->bindValue(":memId", $_POST["memId"]);
+   $members->bindValue(":memPsw", $_POST["memPsw"]);
+   $members->execute();
+
+    if( $members->rowCount() == 0 ){//找不到
+        $errMsg .= "帳密錯誤, <a href='login.html'>重新登入</a><br>";
+    }else{
+        $memRow = $members->fetch(PDO::FETCH_ASSOC);
+        //登入成功,將登入者的資料寫入session
+        $_SESSION["memNo"] = $memRow["no"];
+        $_SESSION["memId"] = $memRow["memId"];
+        $_SESSION["memName"] = $memRow["memName"];
+        $_SESSION["email"] = $memRow["email"];
+
+        //檢查是否從別的功能跳轉過來
+        if( isset($_SESSION["where"]) === true){
+          $to = $_SESSION["where"];
+          unset($_SESSION["where"]);
+          header("location:$to");
+        }
+    }   
+
 } catch (PDOException $e) {
        $errMsg .=  $e->getMessage(). "<br>"; 
        $errMsg .=  $e->getLine(). "<br>";    	

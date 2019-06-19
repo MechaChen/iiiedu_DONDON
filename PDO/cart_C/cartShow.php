@@ -50,7 +50,7 @@ if( isset($_SESSION["pname"]) === false || count($_SESSION["pname"])==0){ //尚�
 				<td><?php echo $subTotal?></td>
 				<td>
 					<input type="submit" name="btnUpdate" value="修改">
-					<input type="submit" name="btnDelete" value="刪除">
+					 <input type="submit" name="btnDelete" value="刪除">
 				</td>
 			</tr>
 	</form>		

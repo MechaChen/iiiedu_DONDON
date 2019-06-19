@@ -35,7 +35,7 @@ a:hover{
 <div style="background-color:#bfbfef;text-align:right"><a href="cartShow.php">檢視購物車</a></div><br>
 
 <table align="center">
-	<tr bgcolor="#bfbfef"><th>書號</th><th>書名</th><th>價格</th><th>作者</th><th>購物</th></tr>
+	<tr bgcolor="#bfbfef"><th>書號</th><th>書名</th><th>價格</th><th>作者</th><th>圖片</th><th>購物</th></tr>
 <?php	
 	while($prodRow = $products->fetch(PDO::FETCH_ASSOC)){
 ?>		
@@ -52,6 +52,7 @@ a:hover{
 			</td>
 			<td><?php echo $prodRow["price"];?></td>
 			<td><?php echo $prodRow["author"];?></td>
+			<td><img src="images//<?php echo $prodRow["image"];?>" width="50"></td>
 			<td><input type="submit" value="放入購物車"></td>
 		</tr>
 	</form>	

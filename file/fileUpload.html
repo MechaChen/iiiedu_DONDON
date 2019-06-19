@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="fileUpload.php" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="MAX_FILE_SIZE" value="2048" />
+      <div class="input-field">
+        <label for="memId">帳號</label>
+        <input type="text" name="memId" id="memId" /><br />
+      </div>
+      <div class="input-field">
+        <label for="memName">帳號</label>
+        <input type="text" name="memName" id="memName" /><br />
+      </div>
+      <div class="input-field">
+        <label for="upFile">大頭貼</label>
+        <input type="file" name="upFile" id="upFile" /><br />
+      </div>
+      <input type="submit" value="OK" />
+    </form>
+  </body>
+</html>
